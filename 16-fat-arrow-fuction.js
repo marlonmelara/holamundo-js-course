@@ -12,3 +12,11 @@ const resultado = miFatArrowFuction(1, 2);
 // Impresión del resultado en la consola.
 // Se imprime "El resultado es 3" en la consola.
 console.log("El resultado es", resultado);
+
+const sum = (a, b) => {
+  return a + b;
+};
+
+const r = sum(2, 8);
+
+console.log("El resultado es", r);
