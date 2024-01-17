@@ -3,29 +3,27 @@ const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // 4 Función para renderizar la lista de tareas en la interfaz de usuario.
 const render = () => {
-  const todoList = document.getElementById("todo-list");
-  // Recorre el array "todos" para ir añadiendo a la lista las tareas
-  const todosTemplate = todos.map((t) => "<li>" + t + "</li>"); // Convierte el array de elementos de lista en una cadena de texto HTML y la establece como contenido interno del elemento de lista.
-  todoList.innerHTML = todosTemplate.join("");
-  // Selecciona todos los elementos de lista dentro del contenedor de la lista de tareas.
-  const elementos = document.querySelectorAll("#todo-list li"); // Ref a los elementos "<li>" que pertenecen al id #todo-list
+  const todoList = document.getElementById("todo-list"); // Obtiene la referencia al elemento de lista de tareas en el DOM.
+  const todosTemplate = todos.map((t) => "<li>" + t + "</li>"); // Mapea el array de tareas a elementos <li> HTML y los almacena en el array 'todosTemplate'.
+  todoList.innerHTML = todosTemplate.join(""); // Convierte el array 'todosTemplate' a un string y lo establece como HTML interno de 'todoList'.
+  const elementos = document.querySelectorAll("#todo-list li"); // Obtiene todos los elementos <li> dentro de 'todoList'.
   elementos.forEach((elemento, i) => {
     // Por cada elemento ejecutara una función
     elemento.addEventListener("click", () => {
-      // Elimina el elemento del DOM.
+      // Elimina la tarea clickeada del DOM.
       elemento.parentNode.removeChild(elemento); // Elimina la tarea del array 'todos'.
       todos.splice(i, 1);
       // Actualiza el almacenamiento local y vuelve a renderizar la lista.
-      actualizaTodos();
-      render();
+      actualizaTodos(); // Actualiza el almacenamiento local.
+      render(); // Vuelve a renderizar la lista de tareas.
     });
   });
 };
 
 // 5 Función para actualizar el almacenamiento local con la lista actual de tareas.
 const actualizaTodos = () => {
-  const todoString = JSON.stringify(todos);
-  localStorage.setItem("todos", todoString);
+  const todoString = JSON.stringify(todos); // Convierte el array 'todos' a un string JSON.
+  localStorage.setItem("todos", todoString); // Almacena el string JSON en el localStorage.
 };
 
 // 0 Controlador de eventos que se ejecuta cuando se carga la ventana.
