@@ -4,7 +4,7 @@ console.log("Hola mundo!");
 let miPrimeraVariable = "Mi primera variable!";
 console.log(miPrimeraVariable);
 
-// Mutualidad
+// Mutalidad
 miPrimeraVariable = "Esto ha cambiado";
 console.log(miPrimeraVariable);
 
@@ -17,11 +17,19 @@ let miNumero3 = -258;
 let miBoolean = true;
 let miOtroBool = false;
 
-console.log(miNumero, miNumero2, miNumero3, miBoolean, miOtroBool);
+console.log(
+  miPrimeraVariable,
+  miNumero,
+  miNumero2,
+  miNumero3,
+  miBoolean,
+  miOtroBool
+);
 
 // Null y undef
-let nulo = null;
-let undef;
+let nulo = null; // Declaramos una variable 'nulo' y le asignamos el valor 'null', lo que significa que está vacía a propósito.
+
+let undef; // Declaramos una variable 'undef' pero no le asignamos ningún valor, por lo que está vacía porque nunca se le puso nada.
 
 console.log(nulo, undef, 12, "ciao");
 
@@ -29,6 +37,8 @@ console.log(nulo, undef, 12, "ciao");
 
 // Objeto vacio
 const miPrimerObjeto = {};
+
+console.log(miPrimerObjeto);
 
 // Objeto con propiedades
 const miObjeto = {
