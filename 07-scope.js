@@ -9,3 +9,7 @@ nombre();
 
 miNombre;
 miApellido;
+
+miNombre();
+console.log(miNombre);
+console.log(miNombre + " " + miApellido);
