@@ -8,6 +8,7 @@ function iterar1() {
 }
 
 iterar1();
+iterar1();
 
 // Función con argumento
 /* La función 'iterar2' recibe un argumento 'arg'. Utiliza un bucle 'for' para iterar sobre cada elemento del array proporcionado como argumento, imprimiendo cada elemento en la consola. Esto permite que la función 'iterar2' sea más flexible que 'iterar1', ya que puede operar sobre cualquier array que se pase como argumento.*/

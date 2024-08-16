@@ -7,9 +7,8 @@ function nombre() {
 
 nombre();
 
-miNombre;
-miApellido;
+// miNombre;
+// miApellido;
 
-miNombre();
 console.log(miNombre);
 console.log(miNombre + " " + miApellido);
