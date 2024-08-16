@@ -35,4 +35,6 @@ const resultadoSuma1 = suma(1, 2); // resultadoSuma1 es 3
 const resultadoSuma2 = suma(6, 5); // resultadoSuma2 es 11
 // También podemos utilizar los valores retornados por la función 'suma' como argumentos para otra llamada a 'suma'.
 const resultadoSuma3 = suma(resultadoSuma1, resultadoSuma2); // resultadoSuma3 es 14
+console.log(`Es igual a ${resultadoSuma1}`);
+console.log(`Es igual a ${resultadoSuma2}`);
 console.log("Es igual a", resultadoSuma3);

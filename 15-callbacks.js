@@ -1,3 +1,5 @@
+/** 📌 Un callback es una función que se va a ejecutar al final de una función */
+
 /**
  * Función 'sumar' que calcula la suma de dos números y luego invoca una función callback con el resultado.
  *
@@ -5,9 +7,10 @@
  * @param {number} b - El segundo número a sumar.
  * @param {function} cb - La función callback que será invocada con el resultado de la suma.
  */
+
 function sumar(a, b, cb) {
-  const r = a + b; // Calcula la suma de 'a' y 'b'
-  cb(r); // Invoca la función callback 'cb' pasando el resultado 'r' como argumento
+  const resultado = a + b; // Calcula la suma de 'a' y 'b'
+  cb(resultado); // Invoca la función callback 'cb' pasando la sumatoria 'resultado' como argumento
 }
 
 /**
