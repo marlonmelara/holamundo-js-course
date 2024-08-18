@@ -16,7 +16,7 @@ Este archivo es el **punto de entrada** de la aplicación. Aquí es donde se con
    ```
 
 - **express:** Se importa la librería Express, que facilita la creación de servidores en Node.js.
-- **user:** Se importa el controlador user.controller.js, que contiene la lógica para manejar las solicitudes HTTP.
+- **user:** Se importa el controlador `user.controller.js` , que contiene la lógica para manejar las solicitudes HTTP.
 
 2. **Crear una instancia de la aplicación:**:
 
@@ -48,7 +48,7 @@ Este archivo es el **punto de entrada** de la aplicación. Aquí es donde se con
   app.get("/:id", user.get);
   ```
 
-- GET /:id: Esta ruta responde con un usuario específico, donde :id es un parámetro que puede ser cualquier valor. La lógica está en la función user.get.
+- GET /:id: Esta ruta responde con un usuario específico, donde :id es un parámetro que puede ser cualquier valor. La lógica está en la función `user.get`.
 
   ```javascript
   app.post("/", user.create);
@@ -67,7 +67,7 @@ Este archivo es el **punto de entrada** de la aplicación. Aquí es donde se con
   app.delete("/:id", user.destroy);
   ```
 
-- DELETE /:id: Esta ruta elimina un usuario específico, utilizando la función user.destroy.
+- DELETE /:id: Esta ruta elimina un usuario específico, utilizando la función `user.destroy`.
 
 5. **Iniciar el servidor:**
 
@@ -81,7 +81,7 @@ Este archivo es el **punto de entrada** de la aplicación. Aquí es donde se con
 
 ## 2. user.controller.js
 
-Este archivo maneja la lógica específica para cada una de las rutas definidas en api.js. Separar la lógica en controladores es una buena práctica que facilita la organización y mantenimiento del código.
+Este archivo maneja la lógica específica para cada una de las rutas definidas en `api.js`. Separar la lógica en controladores es una buena práctica que facilita la organización y mantenimiento del código.
 
 1. **Definición de Funciones:**
 
@@ -119,8 +119,8 @@ Este archivo maneja la lógica específica para cada una de las rutas definidas 
 
 ## 3. Resumen General
 
-- api.js actúa como el "director de orquesta", definiendo cómo se deben manejar las solicitudes HTTP y delegando las tareas específicas al "personal" definido en user.controller.js.
+- `api.js` actúa como el "director de orquesta", definiendo cómo se deben manejar las solicitudes HTTP y delegando las tareas específicas al "personal" definido en `user.controller.js`.
 
-- user.controller.js maneja la "logística" de cada solicitud, determinando qué debe suceder cuando se recibe una solicitud GET, POST, PUT, PATCH, o DELETE en una ruta específica.
+- `user.controller.js` maneja la "logística" de cada solicitud, determinando qué debe suceder cuando se recibe una solicitud GET, POST, PUT, PATCH, o DELETE en una ruta específica.
 
 Ambos archivos trabajan juntos para crear una aplicación funcional en Node.js utilizando Express, manteniendo el código limpio, organizado y fácil de escalar a medida que el proyecto crece.
