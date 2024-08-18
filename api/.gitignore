@@ -5,7 +5,7 @@ node_modules/
 .env
 
 # Ignorar archivos de bloqueo de npm (opcional)
-# package-lock.json
+package-lock.json
 
 # Ignorar otros archivos de sistema que puedan aparecer
 .DS_Store
