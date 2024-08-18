@@ -1,0 +1,12 @@
+# Ignorar la carpeta de dependencias
+node_modules/
+
+# Ignorar archivos de configuración específicos de entorno
+.env
+
+# Ignorar archivos de bloqueo de npm (opcional)
+# package-lock.json
+
+# Ignorar otros archivos de sistema que puedan aparecer
+.DS_Store
+Thumbs.db
