@@ -1,5 +1,6 @@
 // 1. Importar los módulos necesarios
 const express = require("express");
+const mongoose = require("mongoose");
 const user = require("./user.controller"); // Importa el controlador que maneja las rutas
 
 // 2. Crear una instancia de la aplicación
@@ -7,6 +8,12 @@ const app = express();
 
 // 3. Configurar el puerto
 const port = 3000;
+
+app.use(express.json());
+
+mongoose.connect(
+  "mongodb+srv://marlonmelara:qLJJfxCzUWQnzWhN@cluster0.drdhe.mongodb.net/miapp?retryWrites=true&w=majority&appName=Cluster0"
+);
 
 // 4. Configurar las rutas y asignar los controladores
 
