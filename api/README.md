@@ -1,126 +1,117 @@
-# Explicación General del Proyecto
+# Proyecto de Gestión de Usuarios con Express y MongoDB
 
-Este documento proporciona una explicación general de cómo funciona la aplicación creada en Node.js utilizando Express. La aplicación consta de dos archivos principales: `api.js` y `user.controller.js`. A continuación, se detalla el propósito y funcionamiento de cada uno.
+Este proyecto es una API RESTful para la gestión de usuarios, construida con Node.js, Express y MongoDB. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una colección de usuarios en una base de datos MongoDB.
 
-## 1. api.js
+## Contenido
 
-Este archivo es el **punto de entrada** de la aplicación. Aquí es donde se configura el servidor y se definen las rutas que manejarán diferentes tipos de solicitudes HTTP.
+- [Proyecto de Gestión de Usuarios con Express y MongoDB](#proyecto-de-gestión-de-usuarios-con-express-y-mongodb)
+  - [Contenido](#contenido)
+  - [Instalación](#instalación)
+  - [Configuración](#configuración)
+  - [Uso](#uso)
+  - [Estructura del Proyecto](#estructura-del-proyecto)
+  - [Descripción de los Archivos](#descripción-de-los-archivos)
+  - [Endpoints](#endpoints)
+  - [Referencias al Pseudo Código](#referencias-al-pseudo-código)
+  - [Licencia](#licencia)
 
-### Paso a Paso
+## Instalación
 
-1. **Importar Módulos**:
+1. **Clonar el repositorio:**
 
-   ```javascript
-   const express = require("express");
-   const user = require("./user.controller");
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   cd tu-repositorio
+
    ```
 
-- **express:** Se importa la librería Express, que facilita la creación de servidores en Node.js.
-- **user:** Se importa el controlador `user.controller.js` , que contiene la lógica para manejar las solicitudes HTTP.
+2. **Instalar las dependencias:**
 
-2. **Crear una instancia de la aplicación:**:
+   Asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) instalados. Luego ejecuta:
 
-   ```javascript
-   const app = express();
+   ```bash
+   npm install
    ```
 
-- Se crea una instancia de Express, que se utiliza para definir rutas y manejar peticiones.
+## Configuración
 
-3. **Configurar el puerto:**
+1. **Conectar a MongoDB:**
+
+   Este proyecto utiliza MongoDB como base de datos. En el archivo `api.js`, se establece una conexión a MongoDB usando una cadena de conexión. Asegúrate de actualizar esta cadena con tus credenciales:
+
+   ```javascript
+   mongoose.connect(
+     "mongodb+srv://<tu-usuario>:<tu-contraseña>@cluster0.drdhe.mongodb.net/miapp?retryWrites=true&w=majority&appName=Cluster0"
+   );
+   ```
+
+2. **Configurar el puerto:**
+
+   El servidor Express escucha en el puerto `3000` por defecto. Puedes cambiar este puerto modificando la variable `port` en el archivo `api.js`:
 
    ```javascript
    const port = 3000;
    ```
 
-- Se define el puerto en el cual el servidor escuchará las solicitudes. Aquí es el puerto 3000.
+## Uso
 
-4. **Definir Rutas:**
+1. **Iniciar el servidor:**
 
-   - Las rutas son direcciones URL específicas que el servidor puede manejar, cada una con un tipo de solicitud (GET, POST, etc.).
+   ```bash
+   node api.js
 
-   ```javascript
-   app.get("/", user.list);
    ```
 
-- GET /: Esta ruta responde con la lista de usuarios utilizando la función `user.list` definida en `user.controller.js`.
+2. **Probar la API:**
 
-  ```javascript
-  app.get("/:id", user.get);
-  ```
+   Una vez que el servidor esté en funcionamiento, puedes interactuar con la API utilizando herramientas como [Postman](https://www.postman.com/) o [cURL](https://curl.se/).
 
-- GET /:id: Esta ruta responde con un usuario específico, donde :id es un parámetro que puede ser cualquier valor. La lógica está en la función `user.get`.
+## Estructura del Proyecto
 
-  ```javascript
-  app.post("/", user.create);
-  ```
+```plaintext
+├── api.js                  # Configuración del servidor y las rutas principales
+├── user.js                 # Definición del modelo User usando Mongoose
+├── user.controller.js      # Controladores para manejar las solicitudes CRUD
+├── model-pseudocode.md     # Pseudo código para el modelo User
+└── server-pseudocode.md    # Pseudo código para el servidor y las rutas
+```
 
-- POST /: Esta ruta permite crear un nuevo usuario, manejado por la función `user.create`.
+## Descripción de los Archivos
 
-  ```javascript
-  app.put("/:id", user.update);
-  app.patch("/:id", user.update);
-  ```
+- **`api.js`**: Archivo principal que configura el servidor Express, define las rutas, y establece la conexión con MongoDB.
 
-- PUT y PATCH /:id: Estas rutas permiten actualizar un usuario identificado por :id. PUT reemplaza toda la información, mientras que PATCH realiza una actualización parcial, ambas manejadas por user.update.
+- **`user.js`**: Define el esquema del modelo `User` con Mongoose. Especifica los campos `name` y `lastname`, ambos obligatorios y con un mínimo de 3 caracteres.
 
-  ```javascript
-  app.delete("/:id", user.destroy);
-  ```
+- **`user.controller.js`**: Contiene los controladores que manejan la lógica de las rutas (GET, POST, PUT, PATCH, DELETE). Cada función está claramente documentada y vinculada al pseudo código.
 
-- DELETE /:id: Esta ruta elimina un usuario específico, utilizando la función `user.destroy`.
+- **`model-pseudocode.md` y `server-pseudocode.md`**: Archivos que contienen pseudo código detallado para `user.js` y `api.js`, respectivamente, describiendo de manera estructurada la lógica implementada.
 
-5. **Iniciar el servidor:**
+## Endpoints
 
-   ```javascript
-   app.listen(port, () => {
-     console.log("Arrancando la aplicación en el puerto " + port);
-   });
-   ```
+La API expone los siguientes endpoints:
 
-- Aquí es donde el servidor comienza a escuchar las peticiones en el puerto definido (3000). Un mensaje en la consola indica que la aplicación está funcionando correctamente.
+- **GET `/`**: Lista todos los usuarios (`user.list`).
 
-## 2. user.controller.js
+- **GET `/:id`**: Obtiene un usuario específico por `id` (`user.get`).
 
-Este archivo maneja la lógica específica para cada una de las rutas definidas en `api.js`. Separar la lógica en controladores es una buena práctica que facilita la organización y mantenimiento del código.
+- **POST `/`**: Crea un nuevo usuario (`user.create`).
 
-1. **Definición de Funciones:**
+- **PUT `/:id`**: Actualiza un usuario existente por `id` (`user.update`).
 
-   ```javascript
-   const User = {
-     get: (req, res) => {
-       res.status(200).send("Este es un usuario");
-     },
-     list: (req, res) => {
-       res.status(200).send("Hola usuario");
-     },
-     create: (req, res) => {
-       res.status(201).send("Creando un usuario");
-     },
-     update: (req, res) => {
-       res.status(204).send("Actualizando un usuario");
-     },
-     destroy: (req, res) => {
-       res.status(204).send("Eliminando un usuario");
-     },
-   };
-   ```
+- **PATCH `/:id`**: Realiza una actualización parcial de un usuario existente por `id` (`user.update`).
 
-- Cada función dentro de User corresponde a una ruta en `api.js` y maneja la lógica necesaria para responder a las solicitudes.
-- `req`: Objeto que representa la solicitud hecha por el cliente. Contiene información como datos enviados y parámetros en la URL.
-- `res`: Objeto que representa la respuesta que el servidor enviará al cliente.
+- **DELETE `/:id`**: Elimina un usuario existente por `id` (`user.destroy`).
 
-2. **Exportar el Módulo:**
+## Referencias al Pseudo Código
 
-   ```javascript
-   module.exports = User;
-   ```
+Para facilitar la comprensión y mantenimiento del código, cada archivo `.js` está documentado con referencias al pseudo código correspondiente:
 
-- Esto permite que el objeto User (con todas sus funciones) esté disponible para ser importado en otros archivos, como `api.js`.
+- **`user.js`**: Referencias al pseudo código en `model-pseudocode.md`.
 
-## 3. Resumen General
+- **`api.js`** y **`user.controller.js`**: Referencias al pseudo código en `server-pseudocode.md`.
 
-- `api.js` actúa como el "director de orquesta", definiendo cómo se deben manejar las solicitudes HTTP y delegando las tareas específicas al "personal" definido en `user.controller.js`.
+Cada función y sección clave del código incluye un comentario que apunta a la sección relevante del pseudo código, lo que facilita el seguimiento de la lógica del proyecto.
 
-- `user.controller.js` maneja la "logística" de cada solicitud, determinando qué debe suceder cuando se recibe una solicitud GET, POST, PUT, PATCH, o DELETE en una ruta específica.
+## Licencia
 
-Ambos archivos trabajan juntos para crear una aplicación funcional en Node.js utilizando Express, manteniendo el código limpio, organizado y fácil de escalar a medida que el proyecto crece.
+Este proyecto está licenciado bajo la MIT License. Para más detalles, consulta el archivo [LICENSE](LICENSE).
