@@ -1,3 +1,4 @@
+//Ejercicio 3
 /*
   ¿Cómo funciona?
   Tendrás que generar el sistema de control de una pava eléctrica / hervidor eléctrico de agua.
@@ -46,7 +47,7 @@ while (temperatura < 100) {
     console.log(`Ahora tienes el agua a ${temperatura}° grados`);
   }
 }
-
+// Ejercicio 4
 /*
   ¿Cómo funciona?
   Tenemos una batería portátil, capaz de proporcionar diferente potencia
@@ -65,13 +66,41 @@ while (temperatura < 100) {
   - Mostrar este dato en la consola.
 */
 
-let dispositivo = "MacBook";
+// Dispositivo y array de potencias
+let dispositivo = "Teléfono";
 let potencia = [0, 5, 25, 65];
+// Indices:
+//   0 -> Cualquier dispositivo
+//   1 -> Lámpara USB
+//   2 -> Teléfono
+//   3 -> MacBook
 
-if ((dispositivo = "telefono")) {
+if (dispositivo === "Lampara USB") {
+  console.log(`La potencia es ${potencia[1]} watts`);
+} else if (dispositivo === "Teléfono") {
   console.log(`La potencia es ${potencia[2]} watts`);
-} else if ((dispositivo = "MacBook")) {
+} else if (dispositivo === "MacBook") {
   console.log(`La potencia es ${potencia[3]} watts`);
-} else if ((dispositivo = "Lampára USB")) {
-  console.log(`La potencia es ${potencia[3]} watts`);
+} else {
+  // Si no coincide con ninguno de los anteriores
+  console.log("Dispositivo desconocido, la potencia es 0 watts");
+}
+
+// Usando Switch
+switch (dispositivo) {
+  case "Cualquier dispositivo":
+    console.log(`La potencia es ${potencia[0]} watts`);
+    break;
+  case "Lampara USB":
+    console.log(`La potencia es ${potencia[1]} watts`);
+    break;
+  case "Teléfono":
+    console.log(`La potencia es ${potencia[2]} watts`);
+    break;
+  case "MacBook":
+    console.log(`La potencia es ${potencia[3]} watts`);
+    break;
+  default:
+    console.log("Dispositivo desconocido, la potencia es 0 watts");
+    break;
 }
