@@ -25,9 +25,53 @@
 */
 
 let tieneAgua = true;
-let estaEncendida = true;
+let estaEncendida = false;
 let temperatura = 0;
 
 if (!tieneAgua) {
   console.log("La pava no tiene agua, no puede encender");
+} else {
+  estaEncendida = true;
+  console.log("La pava esta encendida");
+}
+
+while (temperatura < 100) {
+  console.log(`Calentando agua... la temperatura es de ${temperatura}° grados`);
+  temperatura = temperatura + 25;
+  if (temperatura >= 100) {
+    console.log(
+      "La temperatura de la pava ha llegado al máximo, la pava se apagará"
+    );
+    encedido = false;
+    console.log(`Ahora tienes el agua a ${temperatura}° grados`);
+  }
+}
+
+/*
+  ¿Cómo funciona?
+  Tenemos una batería portátil, capaz de proporcionar diferente potencia
+  dependiendo del dispositivo que se conecte.
+  - Si conectamos un teléfono: 25 watts
+  - Si conectamos un MacBook: 65 watts
+  - Si conectamos una lámpara USB: 5 watts
+  - Para cualquier otro dispositivo: 0 watts
+
+  Entradas:
+  - Una variable llamada dispositivo (string) que indica el dispositivo conectado.
+  - Una variable llamada potencia (número), que inicia sin valor.
+
+  Salidas:
+  - Determinar la potencia que proporcionará la batería (en watts)
+  - Mostrar este dato en la consola.
+*/
+
+let dispositivo = "MacBook";
+let potencia = [0, 5, 25, 65];
+
+if ((dispositivo = "telefono")) {
+  console.log(`La potencia es ${potencia[2]} watts`);
+} else if ((dispositivo = "MacBook")) {
+  console.log(`La potencia es ${potencia[3]} watts`);
+} else if ((dispositivo = "Lampára USB")) {
+  console.log(`La potencia es ${potencia[3]} watts`);
 }
