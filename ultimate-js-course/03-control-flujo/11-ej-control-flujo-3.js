@@ -95,3 +95,29 @@ molerCafe(true, 2);
     - Mensaje indicando si se aprueba o no el préstamo.
     - En caso de aprobación, se muestra la tasa de interés final.
 */
+
+let tieneCuenta = true;
+let puntajeCredito = 749;
+let tasaInteres;
+
+if (!tieneCuenta) {
+  console.log("No tiene cuenta, por tanto no se puede ofrecer préstamo");
+} else {
+  if (puntajeCredito < 650) {
+    console.log("No se puede otorgar por tener un puntaje inferior a 650");
+  } else if (puntajeCredito >= 750) {
+    tasaInteres = 10;
+  } else if (puntajeCredito >= 700 && puntajeCredito <= 749) {
+    tasaInteres = 15;
+  } else {
+    tasaInteres = 10;
+  }
+}
+
+if (tasaInteres >= 15) {
+  tasaInteres = tasaInteres * 0.9;
+}
+
+if (tieneCuenta && puntajeCredito >= 650) {
+  console.log(`Préstamo aprobado con una tasa de interés del ${tasaInteres}`);
+}
