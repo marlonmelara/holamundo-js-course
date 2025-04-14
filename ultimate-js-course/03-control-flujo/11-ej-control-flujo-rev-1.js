@@ -19,7 +19,7 @@
   si es que pesa más de este tamaño.
 */
 
-// Usando IF
+// Usando IF (control de flujo)
 let fileSize = 10; // Tamaño del archivo en MB
 const MAX_FILE_SIZE = 5;
 
@@ -32,16 +32,16 @@ if (fileSize <= MAX_FILE_SIZE) {
 }
 
 // Usando función clásica
-function checkFileSize(fileSize, maxSize) {
-  if (fileSize <= maxSize) {
-    console.log("El archivo cumple con el tamaño permitido.");
-  } else {
-    console.log(
-      `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${maxSize} MB.`
-    );
-  }
-}
-checkFileSize(10, 5);
+// function checkFileSize(fileSize, maxSize) {
+//   if (fileSize <= maxSize) {
+//     console.log("El archivo cumple con el tamaño permitido.");
+//   } else {
+//     console.log(
+//       `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${maxSize} MB.`
+//     );
+//   }
+// }
+// checkFileSize(10, 5);
 
 // Usando Arrow Fuction
 const checkFileSize = (fileSize, maxSize) => {
@@ -56,10 +56,10 @@ const checkFileSize = (fileSize, maxSize) => {
 checkFileSize(10, 5);
 
 // Usando Arrow Fuction y ternarias
-const checkFileSize = (fileSize, maxSize) => {
-  return fileSize <= maxSize
-    ? "El archivo cumple con el tamaño permitido."
-    : `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${maxSize} MB.`;
-};
+// const checkFileSize = (fileSize, maxSize) => {
+//   return fileSize <= maxSize
+//     ? "El archivo cumple con el tamaño permitido."
+//     : `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${maxSize} MB.`;
+// };
 
-console.log(checkFileSize(10, 5));
+// console.log(checkFileSize(10, 5));
