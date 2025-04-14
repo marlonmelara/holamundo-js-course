@@ -46,15 +46,13 @@ checkFile(10);
 // Usando Arrow Fuction
 const checkFileSize = (fileSizeMB) => {
   if (fileSizeMB <= MAX_FILE_SIZE) {
-    console.log("El archivo cumple con el tamaño permitido.");
+    return "El archivo cumple con el tamaño permitido.";
   } else {
-    console.log(
-      `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${MAX_FILE_SIZE} MB.`
-    );
+    return `El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${MAX_FILE_SIZE} MB.`;
   }
 };
 
-checkFileSize(5);
+console.log(checkFileSize(5));
 
 //Usando Arrow Fuction y ternarias
 const checkFileSizeWithReturn = (fileSizeMB) => {
