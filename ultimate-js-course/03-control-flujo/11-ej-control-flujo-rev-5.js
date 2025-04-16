@@ -135,5 +135,5 @@ const molerCafeArrowDefault = (
   );
 };
 
-molerCafeArrowDefault(true, 6, 4); // molerCafeArrowDefault(true, 6, 4);
+molerCafeArrowDefault(true, 6, 4);
 // molerCafeArrowDefault(false, 2, 5);
