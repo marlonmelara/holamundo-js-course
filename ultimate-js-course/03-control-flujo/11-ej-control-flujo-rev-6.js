@@ -54,3 +54,54 @@ if (tasaInteres >= 15) {
 if (tieneCuenta && puntajeCredito >= 650) {
   console.log(`Préstamo aprobado con una tasa de interés del ${tasaInteres}`);
 }
+
+// Usando condicional switch
+switch (true) {
+  case !tieneCuenta:
+    console.log("No tiene cuenta, por tanto no se puede ofrecer préstamo");
+    break;
+  case puntajeCredito < 650:
+    console.log("No se puede otorgar por tener un puntaje inferior a 650");
+    break;
+  case puntajeCredito >= 750:
+    tasaInteres = 10;
+    break;
+  case puntajeCredito >= 700 && puntajeCredito <= 749:
+    tasaInteres = 15;
+    break;
+  default:
+    tasaInteres = 10;
+}
+
+if (tasaInteres >= 15) {
+  tasaInteres = tasaInteres * 0.9;
+}
+if (tieneCuenta && puntajeCredito >= 650) {
+  console.log(`Préstamo aprobado con una tasa de interés del ${tasaInteres}`);
+}
+
+//Usando Arrow Function
+const verificarCuenta = (esCliente, puntajeCliente) => {
+  if (!esCliente) {
+    console.log("No tiene cuenta, por tanto no se puede ofrecer préstamo");
+  } else {
+    if (puntajeCliente < 650) {
+      console.log("No se puede otorgar por tener un puntaje inferior a 650");
+    } else if (puntajeCliente >= 750) {
+      tasaInteresCliente = 10;
+    } else if (puntajeCliente >= 700 && puntajeCliente < 749) {
+      tasaInteresCliente = 15;
+    } else {
+      tasaInteresCliente = 10;
+    }
+  }
+};
+
+if (tasaInteresCliente >= 15) {
+  tasaInteresCliente = tasaInteresCliente * 0.9;
+}
+if (tieneCuenta && puntajeCredito >= 650) {
+  console.log(`Préstamo aprobado con una tasa de interés del ${tasaInteres}`);
+}
+
+verificarCuenta(false, 751);
