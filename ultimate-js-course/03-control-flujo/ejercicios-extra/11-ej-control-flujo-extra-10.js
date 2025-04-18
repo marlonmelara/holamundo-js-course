@@ -1,5 +1,5 @@
 // Ejercicio 10
-/* 
+/*
 -- Calculadora de envío
 
 Queremos calcular el costo de envío de un producto dependiendo del destino
@@ -24,6 +24,7 @@ let destino = "internacional";
 let esPremium = false;
 let valor;
 
+// Usando if-else
 if (destino === "nacional" && !esPremium) {
   valor = 50;
 } else if (destino === "nacional" && esPremium) {
