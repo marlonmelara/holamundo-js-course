@@ -32,3 +32,19 @@ const getPositiveCount2 = (arr) => {
 
 let positiveCount2 = getPositiveCount2(array);
 console.log(positiveCount2);
+
+/**
+Encontrar cantidad de números
+negativos */
+
+const getNegativeCount = (arr) => {
+  let count = 0;
+  for (let num of arr) {
+    count += num < 0 ? 1 : 0;
+  }
+
+  return count;
+};
+
+let negativeCount = getNegativeCount(array);
+console.log(negativeCount);
