@@ -18,3 +18,17 @@ const getPositiveCount = (arr) => {
 
 let positiveCount = getPositiveCount(array);
 console.log(positiveCount);
+
+// Usando for of y operadores ternarios
+const getPositiveCount2 = (arr) => {
+  let count = 0;
+
+  for (let num of arr) {
+    count += num > 0 ? 1 : 0;
+  }
+
+  return count;
+};
+
+let positiveCount2 = getPositiveCount2(array);
+console.log(positiveCount2);
