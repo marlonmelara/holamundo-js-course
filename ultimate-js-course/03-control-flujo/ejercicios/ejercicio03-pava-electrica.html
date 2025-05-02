@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pava Eléctrica Simulada</title>
+    <style>
+      :root {
+        --main-color: #2c3e50;
+        --accent-color: #2980b9;
+        --danger-color: #e74c3c;
+        --success-color: #27ae60;
+        --bg-color: #efd81d;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .kettle {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 420px;
+        width: 100%;
+      }
+
+      .kettle__title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .kettle__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .kettle__checkbox {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .kettle__button {
+        background-color: var(--accent-color);
+        color: white;
+        padding: 0.6rem;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .kettle__button:hover {
+        background-color: #1f6391;
+      }
+
+      .kettle__status {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .kettle__status--danger {
+        color: var(--danger-color);
+      }
+
+      .kettle__status--success {
+        color: var(--success-color);
+      }
+
+      .kettle__temperature {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        text-align: center;
+        color: var(--main-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kettle">
+      <h1 class="kettle__title">Simulador de Pava Eléctrica</h1>
+      <form class="kettle__form" id="kettleForm">
+        <label class="kettle__checkbox">
+          <input type="checkbox" id="hasWaterInput" checked />
+          Tiene agua
+        </label>
+        <button type="submit" class="kettle__button">Encender pava</button>
+        <div id="kettleStatus" class="kettle__status"></div>
+        <div id="kettleTemp" class="kettle__temperature"></div>
+      </form>
+    </div>
+
+    <script>
+      const MAX_TEMP = 100;
+      const STEP_TEMP = 25;
+
+      const statusOutput = document.getElementById("kettleStatus");
+      const tempOutput = document.getElementById("kettleTemp");
+
+      document
+        .getElementById("kettleForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const hasWater = document.getElementById("hasWaterInput").checked;
+          let isOn = false;
+          let temp = 0;
+
+          statusOutput.className = "kettle__status";
+          tempOutput.textContent = "";
+
+          if (!hasWater) {
+            statusOutput.textContent =
+              "❌ La pava no tiene agua, no puede encender.";
+            statusOutput.classList.add("kettle__status--danger");
+            return;
+          }
+
+          isOn = true;
+          statusOutput.textContent = "🔌 La pava está encendida...";
+
+          const interval = setInterval(() => {
+            if (temp < MAX_TEMP) {
+              tempOutput.textContent = `🌡️ Temperatura: ${temp}°C`;
+              temp += STEP_TEMP;
+            } else {
+              clearInterval(interval);
+              isOn = false;
+              statusOutput.textContent =
+                "✅ El agua está lista a 100°C. La pava se apagó.";
+              statusOutput.classList.add("kettle__status--success");
+              tempOutput.textContent = `🌡️ Temperatura: ${temp}°C`;
+            }
+          }, 800); // Animación cada 800ms
+        });
+    </script>
+  </body>
+</html>

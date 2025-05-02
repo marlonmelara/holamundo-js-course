@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validador de Tamaño de Archivo</title>
+    <style>
+      :root {
+        --primary-color: #333;
+        --accent-color: #0077ff;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: var(--font);
+        color: var(--primary-color);
+        background-color: #efd81d;
+      }
+
+      .validator {
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .validator__title {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .validator__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .validator__input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .validator__button {
+        padding: 0.6rem;
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .validator__button:hover {
+        background-color: #005bcc;
+      }
+
+      .validator__result {
+        margin-top: 1rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="validator">
+      <h1 class="validator__title">Validador de Archivo</h1>
+      <form class="validator__form" id="fileForm">
+        <input
+          type="number"
+          min="0"
+          step="0.1"
+          class="validator__input"
+          id="fileSizeInput"
+          placeholder="Tamaño del archivo (MB)"
+          required />
+        <button type="submit" class="validator__button">Verificar</button>
+        <div class="validator__result" id="resultOutput"></div>
+      </form>
+    </div>
+
+    <script>
+      //Usando Arrow Fuction y ternarias
+      // Definimos una función para verificar el tamaño del archivo
+      const MAX_FILE_SIZE = 5;
+
+      const checkFileSize = (fileSizeMB) => {
+        return fileSizeMB <= MAX_FILE_SIZE
+          ? "✅ El archivo cumple con el tamaño permitido."
+          : `❌ El archivo ha excedido el tamaño permitido. Debe ser menor o igual a ${MAX_FILE_SIZE} MB.`;
+      };
+
+      // Agregamos un evento al formulario para manejar la validación
+      document
+        .getElementById("fileForm") // Seleccionamos el formulario por su ID
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevenimos el comportamiento por defecto del formulario
+          const input = document.getElementById("fileSizeInput"); // Seleccionamos el input por su ID
+          const result = document.getElementById("resultOutput"); // Seleccionamos el elemento donde mostraremos el resultado
+          const size = parseFloat(input.value); // Obtenemos el valor del input y lo convertimos a número
+
+          result.textContent = checkFileSize(size); // Llamamos a la función y mostramos el resultado
+        });
+    </script>
+  </body>
+</html>

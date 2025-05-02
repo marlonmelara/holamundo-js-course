@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Molino de Café</title>
+    <style>
+      :root {
+        --bg-color: #efd81d;
+        --text-color: #2c3e50;
+        --accent-color: #8e44ad;
+        --error-color: #e74c3c;
+        --success-color: #27ae60;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .grinder {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 420px;
+        width: 100%;
+      }
+
+      .grinder__title {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+        color: var(--text-color);
+      }
+
+      .grinder__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .grinder__input,
+      .grinder__checkbox {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      .grinder__button {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.6rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+
+      .grinder__button:hover {
+        background-color: #732d91;
+      }
+
+      .grinder__status {
+        margin-top: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      .grinder__status--error {
+        color: var(--error-color);
+      }
+
+      .grinder__status--success {
+        color: var(--success-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grinder">
+      <h1 class="grinder__title">Molino de Café</h1>
+      <form class="grinder__form" id="grinderForm">
+        <label>
+          <input type="checkbox" id="hasContainer" checked />
+          ¿Tiene contenedor colocado?
+        </label>
+        <input
+          type="number"
+          id="cupCount"
+          class="grinder__input"
+          placeholder="¿Cuántas tazas deseas?"
+          min="1"
+          step="1"
+          required />
+        <button type="submit" class="grinder__button">Moler café</button>
+        <div id="statusMessage" class="grinder__status"></div>
+      </form>
+    </div>
+
+    <script>
+      const TIEMPO_POR_TAZA = 5;
+
+      document
+        .getElementById("grinderForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const tieneContenedor =
+            document.getElementById("hasContainer").checked;
+          const numeroTazas = parseInt(
+            document.getElementById("cupCount").value,
+            10
+          );
+          const status = document.getElementById("statusMessage");
+
+          status.className = "grinder__status"; // Reset classes
+
+          if (!tieneContenedor) {
+            status.textContent =
+              "❌ Error: no se puede encender sin el contenedor.";
+            status.classList.add("grinder__status--error");
+            return;
+          }
+
+          if (!numeroTazas || numeroTazas <= 0) {
+            status.textContent = "⚠️ Selecciona un número válido de tazas.";
+            status.classList.add("grinder__status--error");
+            return;
+          }
+
+          const tiempoMolido = numeroTazas * TIEMPO_POR_TAZA;
+          status.textContent = `☕ Moliendo ${numeroTazas} taza(s)... Tiempo estimado: ${tiempoMolido} segundos.`;
+          status.classList.add("grinder__status--success");
+        });
+    </script>
+  </body>
+</html>

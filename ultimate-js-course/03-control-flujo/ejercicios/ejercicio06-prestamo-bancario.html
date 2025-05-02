@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evaluador de Préstamos</title>
+    <style>
+      :root {
+        --bg-color: #efd81d;
+        --text-color: #2c3e50;
+        --success-color: #27ae60;
+        --error-color: #e74c3c;
+        --accent-color: #34495e;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .loan {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 440px;
+        width: 100%;
+      }
+
+      .loan__title {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+        color: var(--text-color);
+      }
+
+      .loan__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .loan__input,
+      .loan__checkbox {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      .loan__button {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .loan__button:hover {
+        background-color: #2c3e50;
+      }
+
+      .loan__result {
+        margin-top: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      .loan__result--success {
+        color: var(--success-color);
+      }
+
+      .loan__result--error {
+        color: var(--error-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loan">
+      <h1 class="loan__title">Simulador de Préstamos</h1>
+      <form class="loan__form" id="loanForm">
+        <label>
+          <input type="checkbox" id="hasAccount" checked />
+          ¿Cliente del banco?
+        </label>
+        <input
+          type="number"
+          id="creditScore"
+          class="loan__input"
+          placeholder="Puntaje de crédito"
+          min="300"
+          max="850"
+          required />
+        <button type="submit" class="loan__button">Evaluar préstamo</button>
+        <div id="loanResult" class="loan__result"></div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("loanForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const tieneCuenta = document.getElementById("hasAccount").checked;
+          const puntaje = parseInt(
+            document.getElementById("creditScore").value,
+            10
+          );
+          const resultado = document.getElementById("loanResult");
+
+          resultado.className = "loan__result"; // Reinicia clases
+
+          let tasa = null;
+
+          if (!tieneCuenta) {
+            resultado.textContent =
+              "❌ No tiene cuenta, no se puede ofrecer préstamo.";
+            resultado.classList.add("loan__result--error");
+            return;
+          }
+
+          if (puntaje < 650) {
+            resultado.textContent =
+              "⚠️ Puntaje insuficiente para otorgar préstamo.";
+            resultado.classList.add("loan__result--error");
+            return;
+          }
+
+          if (puntaje >= 750) {
+            tasa = 10;
+          } else if (puntaje >= 700 && puntaje <= 749) {
+            tasa = 15;
+          } else {
+            tasa = 10;
+          }
+
+          if (tieneCuenta && tasa >= 15) {
+            tasa *= 0.9; // aplica 10% de descuento
+          }
+
+          resultado.textContent = `✅ Préstamo aprobado. Tasa de interés final: ${tasa.toFixed(
+            2
+          )}%.`;
+          resultado.classList.add("loan__result--success");
+        });
+    </script>
+  </body>
+</html>
