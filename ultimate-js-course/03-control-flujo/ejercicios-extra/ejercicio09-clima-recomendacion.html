@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --bg-color: #efd81d;
+        --text-color: #2c3e50;
+        --success-color: #27ae60;
+        --error-color: #e74c3c;
+        --accent-color: #34495e;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--bg-color);
+      }
+
+      .recomendacion {
+        width: 100%;
+        max-width: 440px;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .recomendacion__title {
+        margin-bottom: 1.2rem;
+        font-size: 1.6rem;
+        text-align: center;
+        color: var(--text-color);
+      }
+
+      .recomendacion__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .recomendacion__input,
+      .recomendacion__checkbox {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      .recomendacion__button {
+        padding: 0.6rem;
+        font-size: 1rem;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        background-color: var(--accent-color);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .recomendacion__button:hover {
+        background-color: #2c3e50;
+      }
+
+      .recomendacion__result {
+        margin-top: 1.2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .recomendacion__result--success {
+        color: var(--success-color);
+      }
+
+      .recomendacion__result--error {
+        color: var(--error-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="recomendacion">
+      <h1 class="recomendacion__title">Recomendar ropa según el clima</h1>
+      <form class="recomendacion__form" id="recomendacionForm">
+        <input
+          type="number"
+          placeholder="Ingresar la Temperatura"
+          class="recomendacion__input"
+          id="temperatura"
+          required />
+        <button type="submit" class="recomendacion__button">
+          Recomendar ropa
+        </button>
+        <div class="recomendacion__result" id="recomendacionResult"></div>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("recomendacionForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const temperatura = parseInt(
+            document.getElementById("temperatura").value,
+            10
+          );
+          const resultado = document.getElementById("recomendacionResult");
+          resultado.className = "recomendacion__result";
+
+          if (temperatura > 30) {
+            resultado.textContent = "☀️ Hace calor, usa ropa ligera.";
+          } else if (temperatura >= 21) {
+            resultado.textContent = "🌤️ Clima templado, puedes vestir cómodo.";
+          } else if (temperatura >= 10) {
+            resultado.textContent =
+              "🌥️ Clima fresco, lleva una chaqueta ligera.";
+          } else {
+            resultado.textContent = "❄️ Hace frío, lleva abrigo";
+          }
+        });
+    </script>
+  </body>
+</html>
