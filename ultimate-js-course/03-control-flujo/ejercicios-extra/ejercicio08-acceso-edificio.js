@@ -1,6 +1,6 @@
 // Ejercicio 8
 
-/* 
+/*
 Ejercicio 8: Control de acceso a edificio
 
 Estás implementando el sistema de control de acceso para un edificio corporativo.

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --bg-color: #efd81d;
+        --text-color: #2c3e50;
+        --success-color: #27ae60;
+        --error-color: #e74c3c;
+        --accent-color: #34495e;
+        --font: "Segoe UI", sans-serif;
+        --box-shadow: 0 4px 10px rgba (0, 0, 0, 0.1);
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg-color);
+      }
+
+      .appointment {
+        width: 100%;
+        max-width: 440px;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: var(--box-shadow);
+      }
+
+      .appointment__title {
+        margin-bottom: 1.2rem;
+        font-size: 1.6rem;
+        text-align: center;
+        color: var(--text-color);
+      }
+
+      .appointment__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .appointment__input {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .appointment__button {
+        padding: 0.6rem;
+        font-size: 1rem;
+        color: #fff;
+        border-radius: 5px;
+        background-color: var(--accent-color);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .appointment__button:hover {
+        background-color: lightseagreen;
+      }
+
+      .appointment__result--success {
+        color: var(--success-color);
+      }
+
+      .appointment__result--error {
+        color: var(--error-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="appointment">
+      <h1 class="appointment__title">Verificar acceso al edificio</h1>
+      <form class="appointment__form" id="appointmentForm">
+        <label
+          ><input type="checkbox" id="hasAppointment" checked />¿Tiene
+          cita?</label
+        >
+        <input
+          type="number"
+          step="1"
+          class="appointment__input"
+          id="age"
+          placeholder="Indicar la edad"
+          required />
+        <button type="submit" class="appointment__button">
+          Evaluar acceso
+        </button>
+        <div class="appointment__result" id="appointmentResult"></div>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("appointmentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const tieneCita = document.getElementById("hasAppointment").checked;
+          const edad = parseInt(document.getElementById("age").value, 10);
+          const resultado = document.getElementById("appointmentResult");
+
+          resultado.className = "appointment__result"; // Resetear clases
+
+          if (tieneCita && edad >= 18) {
+            resultado.textContent = "✅ Acceso permitido.";
+            resultado.classList.add("appointment__result--success");
+          } else {
+            resultado.textContent =
+              "❌ Acceso denegado. Requiere cita y ser mayor de edad.";
+            resultado.classList.add("appointment__result--error");
+          }
+        });
+    </script>
+  </body>
+</html>
