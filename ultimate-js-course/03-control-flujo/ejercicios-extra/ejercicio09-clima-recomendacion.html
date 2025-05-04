@@ -113,7 +113,10 @@
           const resultado = document.getElementById("recomendacionResult");
           resultado.className = "recomendacion__result";
 
-          if (temperatura > 30) {
+          if (temperatura > 50) {
+            resultado.textContent =
+              "🔥🔥 Peligro, el calor te puede matar. Busca un lugar con sombra y toma agua!";
+          } else if (temperatura >= 30) {
             resultado.textContent = "☀️ Hace calor, usa ropa ligera.";
           } else if (temperatura >= 21) {
             resultado.textContent = "🌤️ Clima templado, puedes vestir cómodo.";
