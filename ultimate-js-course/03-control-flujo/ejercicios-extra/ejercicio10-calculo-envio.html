@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 10: Cálculo de Envio</title>
+    <style>
+      :root {
+        --bg-color: #efd81d;
+        --text-color: #2c3e50;
+        --success-color: #27ae60;
+        --error-color: #e74c3c;
+        --accent-color: #34495e;
+        --font: "Segoe UI", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--bg-color);
+      }
+
+      .envio {
+        width: 100%;
+        max-width: 440px;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .envio__titulo {
+        margin-bottom: 1.2rem;
+        font-size: 1.6rem;
+        text-align: center;
+        color: var(--text-color);
+      }
+
+      .envio__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .envio__input,
+      .envio__checkbox {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      .envio__boton {
+        padding: 0.6rem;
+        font-size: 1rem;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        background-color: var(--accent-color);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .envio__boton:hover {
+        background-color: #2c3e50;
+      }
+
+      .envio__resultado {
+        margin-top: 1.2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .envio__resultado--success {
+        color: var(--success-color);
+      }
+
+      .envio__resultado--error {
+        color: var(--error-color);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="envio">
+      <h1 class="envio__titulo">Cálculos de envio</h1>
+      <form action="" class="envio__form" id="calculoForm">
+        <fieldset class="envio__grupo">
+          <legend class="envio__leyenda">Selecciona el destino:</legend>
+          <label class="envio__opcion">
+            <input
+              type="radio"
+              name="destino"
+              value="nacional"
+              class="envio__radio"
+              required />
+            Nacional
+          </label>
+          <label class="envio__opcion">
+            <input
+              type="radio"
+              name="destino"
+              value="internacional"
+              class="envio__radio" />
+            Internacional
+          </label>
+        </fieldset>
+        <div class="envio__grupo">
+          <label class="envio__checkbox-label">
+            <input type="checkbox" id="esPremium" class="envio__checkbox" />
+            ¿Cliente Premium?
+          </label>
+        </div>
+        <div class="envio__grupo">
+          <button type="submit" class="envio__boton">Calcular Envío</button>
+        </div>
+
+        <p class="envio__resultado" id="resultadoEnvio"></p>
+      </form>
+    </section>
+
+    <script>
+      document
+        .getElementById("calculoForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          // ✅ Obtener si es cliente premium
+          const clientePremium = document.getElementById("esPremium").checked;
+
+          // ✅ Obtener el valor seleccionado del grupo "destino"
+          const destinoSeleccionado = document.querySelector(
+            'input[name="destino"]:checked'
+          );
+
+          const destino = destinoSeleccionado.value;
+          let valor = 0;
+
+          if (destino === "nacional" && !clientePremium) {
+            valor = 50;
+          } else if (destino === "nacional" && clientePremium) {
+            valor = 0;
+          } else if (destino === "internacional" && !clientePremium) {
+            valor = 200;
+          } else {
+            valor = 100;
+          }
+
+          // ✅ Mostrar el resultado
+          document.getElementById(
+            "resultadoEnvio"
+          ).textContent = `El costo de envío es $${valor}`;
+        });
+    </script>
+  </body>
+</html>
