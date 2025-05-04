@@ -1,6 +1,6 @@
-// Ejercicio 9
+code; // Ejercicio 9
 
-/* 
+/*
 Ejercicio 9: Detector de clima
 
 Queremos mostrar un mensaje en pantalla que recomiende al usuario qué tipo de ropa usar dependiendo de la temperatura actual.
